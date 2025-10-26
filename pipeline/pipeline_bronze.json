@@ -22,7 +22,7 @@
 					"scripts": [
 						{
 							"type": "NonQuery",
-							"text": "DELETE from bronze.Clientes;\r\nDELETE from bronze.Productos;\r\nDElEtE from bronze.Detalle_ventas;"
+							"text": "DELETE from [bronze].[Clientes];\r\nDELETE from [bronze].[Productos];\r\nDElEtE from [bronze].[Detalle_ventas];"
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
