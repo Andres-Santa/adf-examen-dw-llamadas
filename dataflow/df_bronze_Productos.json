@@ -1,0 +1,82 @@
+{
+	"name": "df_bronze_Productos",
+	"properties": {
+		"folder": {
+			"name": "Bronze"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_sql_Productos",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_sql_Productos",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          fecha_inicio as string,",
+				"          fehca_fin as string,",
+				"          numero as string,",
+				"          imei as string,",
+				"          rbs_utilizada as string,",
+				"          celda as string,",
+				"          latitud_longitud as string,",
+				"          subidos as string,",
+				"          descargados as string,",
+				"          total as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          fecha_inicio as string,",
+				"          fehca_fin as string,",
+				"          numero as string,",
+				"          imei as string,",
+				"          rbs_utilizada as string,",
+				"          celda as string,",
+				"          latitud_longitud as string,",
+				"          subidos as string,",
+				"          descargados as string,",
+				"          total as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          fecha_inicio,",
+				"          fehca_fin,",
+				"          numero,",
+				"          imei,",
+				"          rbs_utilizada,",
+				"          celda,",
+				"          latitud_longitud,",
+				"          subidos,",
+				"          descargados,",
+				"          total",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}
